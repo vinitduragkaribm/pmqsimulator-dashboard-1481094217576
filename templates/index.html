@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PMQ Simulator</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS-->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/bluemix.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap-min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+	<script>
+		
+	</script>
+</head>
+<body>
+	<!--AJAX LOADER-->
+	<div class="block" id="loadingDiv">
+		<img src="{{ url_for('static', filename='images/hourglass.svg')}}" alt="loader Image"/>
+	</div>
+	<!--CONTAINER-->
+    <div class="block">
+	    <div class="centered">
+			<div class="app-title">PMQ Simulator</div>		
+			<!--IOT SERVICES SELECTION-->
+			<div class="section-title">Select IoTF Service</div>
+			<form id="selectServiceForm" action = "/selectPlatform/" method = "get" style="margin:0 auto;position: relative;">
+				{% if serviceOptions|length > 1 %}
+					<select name="selectplat" class="form-control" id="ioTServices" style="display:inline; width: 237px;margin-left: -64px;">
+						<option value = "" >Select a IoTF Service</option>
+					{% for service in serviceOptions %}
+							<option value = "{{loop.index}}" >{{ service.name }}</option>
+					{% endfor %}
+					</select>
+				{% else %}
+					<select name="selectplat" class="form-control" id="ioTServices" style="display:inline; width: 237px;margin-left: -64px;">
+					{% for service in serviceOptions %}
+							<option value = "1">{{ serviceOptions[0]["name"]}}</option>
+					{% endfor %}
+					</select>
+				{% endif %}	
+				<input type="submit" value = "Connect" id="submit" class="btn btn-default"/>
+			</form>	    
+
+	    	<!--SIMULATOR STATUS-->
+			<div class="section-title">Data Modeling Perameter</div>			
+	      	<div class="section-title"  style="display:none">Current state: <span id="current-state">{{state}}</span></div>
+			<div class="btn-group btn-group-lg statusBtn" role="group">
+			  <a class="btn btn-default" href="healthy" id="healthyButton">Healthy</a>
+			  <a class="btn btn-default" href="broken" id="brokenButton">Broken</a>
+			</div>    
+
+			<!--DATA ACTIVITY BUTTONS-->
+			<div class="section-title">Data Activity</div>			
+			<div class="btn-group btn-group-sm dataActivity">
+				<a id="startbutton" connect="/data/" class="btn btn-default">START</a>
+				<a id="stopbutton" connect="/nodata/" class="btn btn-default">STOP</a>
+				<span id="dataStatusLoader"><img src="{{ url_for('static', filename='images/hourglass.svg')}}" alt="loader Image"/></span>
+				<span id="tickMark"><img src="{{ url_for('static', filename='images/tickmark.png')}}" alt="tick mark"/></span>
+			</div>
+			<div class="dataMsg">
+				<div class="started">Data activity successfully <strong>Started</strong></div>
+				<div class="stopped">Data activity successfully <strong>Stopped</<strong></div>
+				<div class="dataError"><strong>Server error!<strong> Data could not be fetched</div>
+			</div>
+		</div>
+	</div>
+</body>
+<!--JAVASCRIPT-->
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.validate.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script>
+	var platformChoice = {{iotplaformChoice}};
+	var dataActivityState = {{dataState}};
+</script>
+</html>

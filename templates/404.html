@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PMQ Simulator</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS-->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/bluemix.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap-min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+	<script>
+		
+	</script>
+</head>
+<body>
+	<!--AJAX LOADER-->
+	<div class="block" id="loadingDiv">
+		<img src="{{ url_for('static', filename='images/hourglass.svg')}}" alt="loader Image"/>
+	</div>
+	<!--CONTAINER-->
+    <div class="block">
+	    <div class="centered" style="height:362px">
+			<div class="app-title">PMQ Simulator</div>	
+			<h1 class="errorHeading">Error 404</h1>
+			<h4>Oops! Looks like page does not exist</h4>
+		</div>
+	</div>
+</body>
+<!--JAVASCRIPT-->
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>
