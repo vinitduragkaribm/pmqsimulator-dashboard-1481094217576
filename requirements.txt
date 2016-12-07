@@ -1,1 +1,8 @@
-Flask==0.10.1
+Flask
+numpy
+scipy
+iso8601
+paho-mqtt
+pytz
+requests
+ibmiotf
